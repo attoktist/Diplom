@@ -1,0 +1,36 @@
+﻿<Window x:Class="DSVN.RecvDataForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DSVN"
+        mc:Ignorable="d"
+        Title="RecvDataForm" Height="450" Width="800">
+    <Grid>
+        <TreeView x:Name="treeViewLocal" HorizontalAlignment="Left" Height="400" Margin="10,10,0,0" VerticalAlignment="Top" Width="337" ItemsSource="{Binding}">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type local:DirectoryItem}"
+                    ItemsSource="{Binding Items}">
+
+                    <CheckBox IsChecked="{Binding IsChecked}" Content="{Binding Name}"  ToolTip="{Binding Path}"/>
+                </HierarchicalDataTemplate>
+
+
+            </TreeView.ItemTemplate>
+        </TreeView>
+        <Button x:Name="buttonOK" Content="ОК" HorizontalAlignment="Left" Margin="566,391,0,0" VerticalAlignment="Top" Width="75"  IsDefault="True" Click="ButtonOK_Click"/>
+        <Button x:Name="buttonCancel" Content="Отмена" HorizontalAlignment="Left" Margin="683,391,0,0" VerticalAlignment="Top" Width="75" IsCancel="True" Click="ButtonCancel_Click" />
+        <ListBox x:Name="listBoxVersion" HorizontalAlignment="Left" Height="281" Margin="450,10,0,0" VerticalAlignment="Top" Width="308" ItemsSource="{Binding}" SelectionChanged="ListBoxVersion_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type local:DirectoryItem}"
+                                  ItemsSource="{Binding Items}">
+
+                    <TextBlock  Text="{Binding Path=Name}"  ToolTip="{Binding Path=Path}" />
+                </HierarchicalDataTemplate>
+
+
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+    </Grid>
+</Window>
